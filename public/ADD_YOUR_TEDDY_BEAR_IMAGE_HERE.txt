@@ -1,0 +1,7 @@
+Add your teddy bear or party mascot image here as:
+teddy-bear.png
+
+The image will appear in the bottom right corner of the page (on desktop only).
+
+Recommended size: 400x400px or larger
+Format: PNG with transparent background works best
