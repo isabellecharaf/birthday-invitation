@@ -20,8 +20,8 @@ export default function GooglyEyes() {
         }
       }
 
-      setLeftEyePos(moveEye(150, 200))
-      setRightEyePos(moveEye(280, 160))
+      setLeftEyePos(moveEye(82, 82))
+      setRightEyePos(moveEye(198, 82))
     }
 
     window.addEventListener('mousemove', handleMouseMove)
@@ -30,8 +30,13 @@ export default function GooglyEyes() {
 
   const Eye = ({ size, pupilSize, position }: { size: number; pupilSize: number; position: { x: number; y: number } }) => (
     <div
-      className="rounded-full bg-white border-4 border-gray-300 shadow-lg flex items-center justify-center"
-      style={{ width: size, height: size }}
+      className="rounded-full bg-white flex items-center justify-center"
+      style={{
+        width: size,
+        height: size,
+        border: '1px solid #000000',
+        boxShadow: 'inset 1px 1px 2px rgba(0,0,0,0.1)'
+      }}
     >
       <div
         className="rounded-full bg-black transition-transform duration-100"
@@ -45,14 +50,10 @@ export default function GooglyEyes() {
   )
 
   return (
-    <div className="fixed top-8 left-8 z-10">
-      <div className="relative">
-        <div className="absolute top-8 left-0">
-          <Eye size={100} pupilSize={45} position={leftEyePos} />
-        </div>
-        <div className="absolute top-0 left-24">
-          <Eye size={120} pupilSize={55} position={rightEyePos} />
-        </div>
+    <div className="fixed top-8 left-8 z-10" style={{ transform: 'rotate(-8deg)' }}>
+      <div className="relative flex gap-4">
+        <Eye size={100} pupilSize={45} position={leftEyePos} />
+        <Eye size={100} pupilSize={45} position={rightEyePos} />
       </div>
     </div>
   )

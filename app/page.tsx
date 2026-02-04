@@ -1,11 +1,15 @@
 import RSVPForm from '@/components/RSVPForm'
 import MusicPlayer from '@/components/MusicPlayer'
 import GooglyEyes from '@/components/GooglyEyes'
+import CursorTrail from '@/components/CursorTrail'
 import Image from 'next/image'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#DA9BD9] relative overflow-hidden">
+    <div className="min-h-screen bg-[#31012C] relative overflow-hidden">
+      {/* Cursor Trail */}
+      <CursorTrail />
+
       {/* Googly Eyes */}
       <GooglyEyes />
 
@@ -29,16 +33,57 @@ export default function Home() {
 
       {/* Main Content */}
       <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4 py-12">
+        {/* Header Image */}
+        <div className="mb-8">
+          <Image
+            src="/header.png"
+            alt="Party header"
+            width={400}
+            height={400}
+            className="object-contain"
+            style={{ imageRendering: 'pixelated' }}
+          />
+        </div>
+
         {/* Title */}
-        <h1
-          className="text-6xl md:text-7xl lg:text-8xl text-purple-900 mb-16 text-center"
+        {/* <h1
+          className="text-6xl md:text-7xl lg:text-8xl mb-16 text-center"
           style={{
-            fontFamily: 'Comic Sans MS, cursive',
-            textShadow: '2px 2px 4px rgba(0,0,0,0.1)'
+            color: '#FFB3D9',
+            textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
           }}
         >
           RSVP to my party
-        </h1>
+        </h1> */}
+
+        {/* Subheader Image */}
+        <div className="mb-4">
+          <Image
+            src="/subheader.png"
+            alt="Subheader"
+            width={400}
+            height={200}
+            className="object-contain"
+            style={{ imageRendering: 'pixelated' }}
+          />
+        </div>
+
+        {/* Save The Date Image - Links to Kilowatt Bar */}
+        <a
+          href="https://maps.app.goo.gl/XYXP467EgGFAYZ1x8"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mb-16 block"
+        >
+          <Image
+            src="/savethedate.png"
+            alt="Save The Date"
+            width={400}
+            height={200}
+            className="object-contain hover:opacity-80 transition-opacity"
+            style={{ imageRendering: 'pixelated' }}
+          />
+        </a>
 
         {/* RSVP Form */}
         <div className="w-full max-w-2xl">
