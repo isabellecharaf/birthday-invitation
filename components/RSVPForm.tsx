@@ -82,7 +82,7 @@ export default function RSVPForm() {
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-lg mx-auto space-y-4">
       {/* RSVP Status Buttons */}
-      <div className="flex gap-3">
+      <div className="flex flex-col sm:flex-row gap-3">
         <button
           type="button"
           onClick={() => setRsvpStatus('going')}

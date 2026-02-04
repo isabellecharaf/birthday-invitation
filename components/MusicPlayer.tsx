@@ -12,13 +12,19 @@ export default function MusicPlayer() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTrack, setCurrentTrack] = useState(0)
   const [progress, setProgress] = useState(0)
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false) // Start collapsed
   const [artists, setArtists] = useState<Artist[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [visualizerData, setVisualizerData] = useState<number[][]>(
     Array(10).fill(0).map(() => Array(5).fill(0))
   )
   const audioRef = useRef<HTMLAudioElement>(null)
+
+  // Check if desktop on mount and open player on desktop
+  useEffect(() => {
+    const isDesktop = window.innerWidth >= 768 // md breakpoint
+    setIsOpen(isDesktop)
+  }, [])
 
   // Fetch music files from the API
   useEffect(() => {
@@ -122,14 +128,20 @@ export default function MusicPlayer() {
 
   if (!isOpen) {
     return (
-      <div className="fixed bottom-4 left-4 z-50">
-        <button
-          onClick={() => setIsOpen(true)}
-          className="bg-gray-200 border-2 border-gray-400 px-4 py-2 text-sm font-bold shadow-lg hover:bg-gray-300"
-        >
-          Open Player
-        </button>
-      </div>
+      <button
+        onClick={() => setIsOpen(true)}
+        className="px-4 py-2 text-sm font-bold shadow-lg hover:opacity-90"
+        style={{
+          background: '#d4d4d4',
+          border: '1px solid #000000',
+          borderRadius: '8px',
+          color: '#000000',
+          boxShadow: 'inset -3px -3px 0px rgba(0,0,0,0.4), inset 3px 3px 0px rgba(255,255,255,0.7)',
+          imageRendering: 'pixelated' as const,
+        }}
+      >
+        🎵 Music
+      </button>
     )
   }
 

@@ -10,8 +10,10 @@ export default function Home() {
       {/* Cursor Trail */}
       <CursorTrail />
 
-      {/* Googly Eyes */}
-      <GooglyEyes />
+      {/* Googly Eyes - Hidden on mobile */}
+      <div className="hidden md:block">
+        <GooglyEyes />
+      </div>
 
       {/* Music Player */}
       <div className="fixed bottom-4 left-4 z-40">
@@ -32,15 +34,15 @@ export default function Home() {
       */}
 
       {/* Main Content */}
-      <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4 py-12">
+      <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 py-12 sm:py-16">
         {/* Header Image */}
-        <div className="mb-8">
+        <div className="mb-8 w-full max-w-[400px]">
           <Image
             src="/header.png"
             alt="Party header"
             width={400}
             height={400}
-            className="object-contain"
+            className="object-contain w-full h-auto"
             style={{ imageRendering: 'pixelated' }}
           />
         </div>
@@ -57,13 +59,13 @@ export default function Home() {
         </h1> */}
 
         {/* Subheader Image */}
-        <div className="mb-4">
+        <div className="mb-4 w-full max-w-[400px]">
           <Image
             src="/subheader.png"
             alt="Subheader"
             width={400}
             height={200}
-            className="object-contain"
+            className="object-contain w-full h-auto"
             style={{ imageRendering: 'pixelated' }}
           />
         </div>
@@ -73,14 +75,14 @@ export default function Home() {
           href="https://maps.app.goo.gl/XYXP467EgGFAYZ1x8"
           target="_blank"
           rel="noopener noreferrer"
-          className="mb-16 block"
+          className="mb-8 md:mb-16 block w-full max-w-[400px]"
         >
           <Image
             src="/savethedate.png"
             alt="Save The Date"
             width={400}
             height={200}
-            className="object-contain hover:opacity-80 transition-opacity"
+            className="object-contain w-full h-auto hover:opacity-80 transition-opacity"
             style={{ imageRendering: 'pixelated' }}
           />
         </a>
