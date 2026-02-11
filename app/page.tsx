@@ -1,15 +1,11 @@
 import RSVPForm from '@/components/RSVPForm'
 import MusicPlayer from '@/components/MusicPlayer'
 import GooglyEyes from '@/components/GooglyEyes'
-import CursorTrail from '@/components/CursorTrail'
 import Image from 'next/image'
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#31012C] relative overflow-hidden">
-      {/* Cursor Trail */}
-      <CursorTrail />
-
       {/* Googly Eyes - Hidden on mobile */}
       <div className="hidden md:block">
         <GooglyEyes />

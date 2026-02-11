@@ -1,9 +1,16 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { supabase, isSupabaseConfigured } from '@/lib/supabase'
 
 type RSVPStatus = 'going' | 'cant_go'
+
+type SavedRSVP = {
+  name: string
+  phone: string
+  plusOnes: string
+  rsvpStatus: RSVPStatus
+}
 
 export default function RSVPForm() {
   const [name, setName] = useState('')
@@ -13,6 +20,25 @@ export default function RSVPForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showConfirmation, setShowConfirmation] = useState(false)
   const [error, setError] = useState('')
+  const [savedRSVP, setSavedRSVP] = useState<SavedRSVP | null>(null)
+  const [isEditing, setIsEditing] = useState(false)
+
+  // Load saved RSVP from localStorage on mount
+  useEffect(() => {
+    const saved = localStorage.getItem('birthday_rsvp')
+    if (saved) {
+      try {
+        const parsedRSVP = JSON.parse(saved)
+        setSavedRSVP(parsedRSVP)
+        setName(parsedRSVP.name)
+        setPhone(parsedRSVP.phone)
+        setPlusOnes(parsedRSVP.plusOnes)
+        setRsvpStatus(parsedRSVP.rsvpStatus)
+      } catch (err) {
+        console.error('Error loading saved RSVP:', err)
+      }
+    }
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -39,15 +65,22 @@ export default function RSVPForm() {
 
       if (error) throw error
 
+      // Save to localStorage
+      const rsvpData = {
+        name,
+        phone,
+        plusOnes,
+        rsvpStatus
+      }
+      localStorage.setItem('birthday_rsvp', JSON.stringify(rsvpData))
+      setSavedRSVP(rsvpData)
+      setIsEditing(false)
+
       setShowConfirmation(true)
-      setName('')
-      setPhone('')
-      setPlusOnes('')
-      setRsvpStatus('going')
 
       setTimeout(() => {
         setShowConfirmation(false)
-      }, 5000)
+      }, 3000)
     } catch (err) {
       setError('Failed to submit RSVP. Please try again.')
       console.error('Error submitting RSVP:', err)
@@ -60,7 +93,7 @@ export default function RSVPForm() {
     return (
       <div className="w-full max-w-lg mx-auto p-8 text-center">
         <div className="text-6xl mb-4">★ﾟ.*･｡ﾟ</div>
-        {rsvpStatus === 'going' ? (
+        {savedRSVP?.rsvpStatus === 'going' ? (
           <>
             <h3 className="text-3xl font-bold mb-2" style={{ color: '#FFB3D9' }}>
               OMG thank u!!!
@@ -75,6 +108,83 @@ export default function RSVPForm() {
             <p className="text-lg" style={{ color: '#FFB3D9' }}>lmk if you change your mind &lt;3 ily</p>
           </>
         )}
+      </div>
+    )
+  }
+
+  // Show saved RSVP if exists and not editing
+  if (savedRSVP && !isEditing) {
+    return (
+      <div className="w-full max-w-lg mx-auto space-y-4">
+        <h3 className="text-2xl font-bold text-center mb-4" style={{ color: '#FFB3D9' }}>
+          Your RSVP
+        </h3>
+
+        <div
+          style={{
+            background: '#ffffff',
+            border: '1px solid #000000',
+            borderRadius: '8px',
+            padding: '16px',
+            boxShadow: 'inset 1px 1px 2px rgba(0,0,0,0.1)',
+          }}
+        >
+          <div className="space-y-3">
+            <div>
+              <div className="text-xs font-bold mb-1" style={{ color: '#666' }}>
+                Status
+              </div>
+              <div className="font-bold" style={{ color: savedRSVP.rsvpStatus === 'going' ? '#014B49' : '#6B2B29' }}>
+                {savedRSVP.rsvpStatus === 'going' ? "✓ I'm going!" : "✗ Can't make it"}
+              </div>
+            </div>
+
+            <div>
+              <div className="text-xs font-bold mb-1" style={{ color: '#666' }}>
+                Name
+              </div>
+              <div style={{ color: '#000000' }}>{savedRSVP.name}</div>
+            </div>
+
+            <div>
+              <div className="text-xs font-bold mb-1" style={{ color: '#666' }}>
+                Phone
+              </div>
+              <div style={{ color: '#000000' }}>{savedRSVP.phone}</div>
+            </div>
+
+            {savedRSVP.plusOnes && (
+              <div>
+                <div className="text-xs font-bold mb-1" style={{ color: '#666' }}>
+                  Plus ones
+                </div>
+                <div style={{ color: '#000000' }}>{savedRSVP.plusOnes}</div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <button
+          onClick={() => setIsEditing(true)}
+          style={{
+            width: '100%',
+            background: '#d4d4d4',
+            border: '1px solid #000000',
+            borderRadius: '8px',
+            padding: '12px 24px',
+            fontSize: '16px',
+            fontWeight: 'bold',
+            color: '#000000',
+            boxShadow: 'inset -3px -3px 0px rgba(0,0,0,0.4), inset 3px 3px 0px rgba(255,255,255,0.7)',
+            textShadow: '1px 1px 0px rgba(0,0,0,0.1)',
+            transition: 'all 0.1s',
+            cursor: 'pointer',
+            imageRendering: 'pixelated' as const,
+          }}
+          className="hover:translate-y-[1px]"
+        >
+          Change Response
+        </button>
       </div>
     )
   }
@@ -137,7 +247,7 @@ export default function RSVPForm() {
 
       {/* Name Input */}
       <div>
-        <label htmlFor="name" className="block text-xs font-bold mb-1" style={{ color: '#FFB3D9' }}>
+        <label htmlFor="name" className="block text-sm font-bold mb-1" style={{ color: '#FFB3D9' }}>
           Your name
         </label>
         <input
@@ -167,7 +277,7 @@ export default function RSVPForm() {
 
       {/* Phone Number Input */}
       <div>
-        <label htmlFor="phone" className="block text-xs font-bold mb-1" style={{ color: '#FFB3D9' }}>
+        <label htmlFor="phone" className="block text-sm font-bold mb-1" style={{ color: '#FFB3D9' }}>
           Phone number
         </label>
         <input
@@ -197,7 +307,7 @@ export default function RSVPForm() {
 
       {/* Plus Ones Input */}
       <div>
-        <label htmlFor="plusOnes" className="block text-xs font-bold mb-1" style={{ color: '#FFB3D9' }}>
+        <label htmlFor="plusOnes" className="block text-sm font-bold mb-1" style={{ color: '#FFB3D9' }}>
           Bringing a plus 1? Plus 2?!?! If yes, say how many
         </label>
         <textarea
