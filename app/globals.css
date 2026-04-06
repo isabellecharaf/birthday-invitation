@@ -1,5 +1,5 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import "tailwindcss";
 
 @font-face {
   font-family: 'Pixolde';
@@ -45,6 +45,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: 'Pixolde', Arial, Helvetica, sans-serif;
+  font-size: 120%;
 }
 
 * {

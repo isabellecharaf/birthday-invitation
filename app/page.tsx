@@ -1,13 +1,17 @@
 import RSVPForm from '@/components/RSVPForm'
 import MusicPlayer from '@/components/MusicPlayer'
 import GooglyEyes from '@/components/GooglyEyes'
+import TalentShowSignup from '@/components/TalentShowSignup'
+import Itinerary from '@/components/Itinerary'
+import DressCode from '@/components/DressCode'
+import ImageMarquee from '@/components/ImageMarquee'
 import Image from 'next/image'
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#31012C] relative overflow-hidden">
       {/* Googly Eyes - Hidden on mobile */}
-      <div className="hidden md:block">
+      <div className="hidden md:block z-50">
         <GooglyEyes />
       </div>
 
@@ -30,62 +34,66 @@ export default function Home() {
       */}
 
       {/* Main Content */}
-      <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 py-12 sm:py-16">
-        {/* Header Image */}
-        <div className="mb-8 w-full max-w-[400px]">
-          <Image
-            src="/header.png"
-            alt="Party header"
-            width={400}
-            height={400}
-            className="object-contain w-full h-auto"
-            style={{ imageRendering: 'pixelated' }}
-          />
+      <div className="relative z-20 min-h-screen px-4 sm:px-6 py-8">
+        {/* Marquee Section */}
+        <ImageMarquee />
+
+        {/* Header Section - Centered */}
+        <div className="flex flex-col items-center mb-12">
+          <div className="mb-4 w-full max-w-[300px]">
+            <Image
+              src="/subheader.png"
+              alt="Subheader"
+              width={400}
+              height={200}
+              className="object-contain w-full h-auto"
+              style={{ imageRendering: 'pixelated' }}
+            />
+          </div>
+
+          <a
+            href="https://maps.app.goo.gl/XYXP467EgGFAYZ1x8"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full max-w-[300px]"
+          >
+            <Image
+              src="/savethedate.png"
+              alt="Save The Date"
+              width={400}
+              height={200}
+              className="object-contain w-full h-auto hover:opacity-80 transition-opacity"
+              style={{ imageRendering: 'pixelated' }}
+            />
+          </a>
         </div>
 
-        {/* Title */}
-        {/* <h1
-          className="text-6xl md:text-7xl lg:text-8xl mb-16 text-center"
-          style={{
-            color: '#FFB3D9',
-            textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
-          }}
-        >
-          RSVP to my party
-        </h1> */}
+        {/* Desktop-style Grid Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-7xl mx-auto mb-12">
+          {/* Top Left: Talent Show */}
+          <div className="w-full">
+            <TalentShowSignup />
+          </div>
 
-        {/* Subheader Image */}
-        <div className="mb-4 w-full max-w-[400px]">
-          <Image
-            src="/subheader.png"
-            alt="Subheader"
-            width={400}
-            height={200}
-            className="object-contain w-full h-auto"
-            style={{ imageRendering: 'pixelated' }}
-          />
+          {/* Top Right: Itinerary + Dress Code */}
+          <div className="w-full space-y-12">
+            <Itinerary />
+            <DressCode />
+          </div>
         </div>
 
-        {/* Save The Date Image - Links to Kilowatt Bar */}
-        <a
-          href="https://maps.app.goo.gl/XYXP467EgGFAYZ1x8"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mb-8 md:mb-16 block w-full max-w-[400px]"
-        >
-          <Image
-            src="/savethedate.png"
-            alt="Save The Date"
-            width={400}
-            height={200}
-            className="object-contain w-full h-auto hover:opacity-80 transition-opacity"
-            style={{ imageRendering: 'pixelated' }}
-          />
-        </a>
-
-        {/* RSVP Form */}
-        <div className="w-full max-w-2xl">
-          <RSVPForm />
+        {/* RSVP Form - Separate section with more space */}
+        <div className="max-w-7xl mx-auto mt-16">
+          <div id="rsvp-section" className="w-full">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold" style={{ color: '#FFB3D9' }}>
+                if you haven&apos;t already RSVP&apos;d.... do it now &gt;:(
+              </h2>
+            </div>
+            <div className="max-w-2xl mx-auto">
+              <RSVPForm />
+            </div>
+          </div>
         </div>
       </div>
     </div>
