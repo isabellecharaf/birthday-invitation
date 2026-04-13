@@ -66,6 +66,11 @@ export default function Home() {
               style={{ imageRendering: 'pixelated' }}
             />
           </a>
+
+          {/* Itinerary under Save The Date */}
+          <div className="w-full max-w-[600px] mt-8">
+            <Itinerary />
+          </div>
         </div>
 
         {/* Desktop-style Grid Layout */}
@@ -75,9 +80,8 @@ export default function Home() {
             <TalentShowSignup />
           </div>
 
-          {/* Top Right: Itinerary + Dress Code */}
-          <div className="w-full space-y-12">
-            <Itinerary />
+          {/* Top Right: Dress Code */}
+          <div className="w-full">
             <DressCode />
           </div>
         </div>
