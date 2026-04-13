@@ -35,8 +35,17 @@ export default function Home() {
 
       {/* Main Content */}
       <div className="relative z-20 min-h-screen px-4 sm:px-6 py-8">
-        {/* Marquee Section */}
-        <ImageMarquee />
+        {/* Me with Sunglasses Image */}
+        <div className="flex justify-center mb-8">
+          <Image
+            src="/me.png"
+            alt="Isabelle with sunglasses"
+            width={600}
+            height={400}
+            className="object-contain w-full max-w-[600px] h-auto"
+            style={{ imageRendering: 'pixelated' }}
+          />
+        </div>
 
         {/* Header Section - Centered */}
         <div className="flex flex-col items-center mb-12">
@@ -75,6 +84,26 @@ export default function Home() {
           {/* Dress Code under Itinerary */}
           <div className="w-full max-w-[600px] mt-8">
             <DressCode />
+          </div>
+
+          {/* Bottom Images - Monkey and Drink */}
+          <div className="w-full max-w-[800px] mt-12 flex flex-col md:flex-row gap-6 justify-center items-center">
+            <Image
+              src="/monkey.png"
+              alt="Monkey"
+              width={400}
+              height={400}
+              className="object-contain w-full md:w-1/2 h-auto"
+              style={{ imageRendering: 'pixelated' }}
+            />
+            <Image
+              src="/drink.png"
+              alt="Drink"
+              width={400}
+              height={400}
+              className="object-contain w-full md:w-1/2 h-auto"
+              style={{ imageRendering: 'pixelated' }}
+            />
           </div>
         </div>
 
