@@ -95,17 +95,17 @@ export default function RSVPForm() {
         <div className="text-6xl mb-4">★ﾟ.*･｡ﾟ</div>
         {savedRSVP?.rsvpStatus === 'going' ? (
           <>
-            <h3 className="text-3xl font-bold mb-2" style={{ color: '#FFB3D9' }}>
+            <h3 className="text-3xl font-bold mb-2" style={{ color: '#FFFFFF' }}>
               OMG thank u!!!
             </h3>
-            <p className="text-lg" style={{ color: '#FFB3D9' }}>Your RSVP has been submitted! See u there! ♥</p>
+            <p className="text-lg" style={{ color: '#FFFFFF' }}>Your RSVP has been submitted! See u there! ♥</p>
           </>
         ) : (
           <>
-            <h3 className="text-3xl font-bold mb-2" style={{ color: '#FFB3D9' }}>
+            <h3 className="text-3xl font-bold mb-2" style={{ color: '#FFFFFF' }}>
               bummer!
             </h3>
-            <p className="text-lg" style={{ color: '#FFB3D9' }}>lmk if you change your mind &lt;3 ily</p>
+            <p className="text-lg" style={{ color: '#FFFFFF' }}>lmk if you change your mind &lt;3 ily</p>
           </>
         )}
       </div>
@@ -116,7 +116,7 @@ export default function RSVPForm() {
   if (savedRSVP && !isEditing) {
     return (
       <div className="w-full max-w-lg mx-auto space-y-4">
-        <h3 className="text-2xl font-bold text-center mb-4" style={{ color: '#FFB3D9' }}>
+        <h3 className="text-2xl font-bold text-center mb-4" style={{ color: '#FFFFFF' }}>
           Your RSVP
         </h3>
 
@@ -247,7 +247,7 @@ export default function RSVPForm() {
 
       {/* Name Input */}
       <div>
-        <label htmlFor="name" className="block text-sm font-bold mb-1" style={{ color: '#FFB3D9' }}>
+        <label htmlFor="name" className="block text-sm font-bold mb-1" style={{ color: '#FFFFFF' }}>
           Your name
         </label>
         <input
@@ -277,7 +277,7 @@ export default function RSVPForm() {
 
       {/* Phone Number Input */}
       <div>
-        <label htmlFor="phone" className="block text-sm font-bold mb-1" style={{ color: '#FFB3D9' }}>
+        <label htmlFor="phone" className="block text-sm font-bold mb-1" style={{ color: '#FFFFFF' }}>
           Phone number
         </label>
         <input
@@ -307,7 +307,7 @@ export default function RSVPForm() {
 
       {/* Plus Ones Input */}
       <div>
-        <label htmlFor="plusOnes" className="block text-sm font-bold mb-1" style={{ color: '#FFB3D9' }}>
+        <label htmlFor="plusOnes" className="block text-sm font-bold mb-1" style={{ color: '#FFFFFF' }}>
           Bringing a plus 1? Plus 2?!?! If yes, say how many
         </label>
         <textarea

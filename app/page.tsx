@@ -9,7 +9,7 @@ import Image from 'next/image'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#31012C] relative overflow-hidden">
+    <div className="min-h-screen bg-[#DA6BE5] relative overflow-hidden">
       {/* Googly Eyes - Hidden on mobile */}
       <div className="hidden md:block z-50">
         <GooglyEyes />
@@ -71,18 +71,18 @@ export default function Home() {
           <div className="w-full max-w-[600px] mt-8">
             <Itinerary />
           </div>
+
+          {/* Dress Code under Itinerary */}
+          <div className="w-full max-w-[600px] mt-8">
+            <DressCode />
+          </div>
         </div>
 
         {/* Desktop-style Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-7xl mx-auto mb-12">
-          {/* Top Left: Talent Show */}
-          <div className="w-full">
+          {/* Talent Show - centered */}
+          <div id="talent-show-section" className="w-full lg:col-span-2 max-w-2xl mx-auto">
             <TalentShowSignup />
-          </div>
-
-          {/* Top Right: Dress Code */}
-          <div className="w-full">
-            <DressCode />
           </div>
         </div>
 
@@ -90,7 +90,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto mt-16">
           <div id="rsvp-section" className="w-full">
             <div className="text-center mb-8">
-              <h2 className="text-3xl md:text-4xl font-bold" style={{ color: '#FFB3D9' }}>
+              <h2 className="text-3xl md:text-4xl font-bold" style={{ color: '#FFFFFF' }}>
                 if you haven&apos;t already RSVP&apos;d.... do it now &gt;:(
               </h2>
             </div>

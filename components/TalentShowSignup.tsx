@@ -55,11 +55,11 @@ export default function TalentShowSignup() {
     return (
       <div className="w-full max-w-2xl mx-auto">
         <div className="p-8 text-center">
-          <div className="text-5xl mb-4" style={{ color: '#FFB3D9' }}>✦</div>
-          <h3 className="text-2xl font-bold mb-2" style={{ color: '#FFB3D9' }}>
+          <div className="text-5xl mb-4" style={{ color: '#FFFFFF' }}>✦</div>
+          <h3 className="text-2xl font-bold mb-2" style={{ color: '#FFFFFF' }}>
             you&apos;re in.
           </h3>
-          <p className="text-lg" style={{ color: '#FFB3D9' }}>
+          <p className="text-lg" style={{ color: '#FFFFFF' }}>
             can&apos;t wait to see it
           </p>
         </div>
@@ -71,11 +71,11 @@ export default function TalentShowSignup() {
     <div className="w-full max-w-2xl mx-auto">
       {/* Header */}
       <div className="text-center mb-8">
-        <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: '#FFFF99' }}>
+        <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: '#FFFFFF' }}>
           TALENT SHOW
         </h2>
-        <p className="text-sm md:text-base leading-relaxed" style={{ color: '#FFB3D9' }}>
-          2–3 minutes. anything goes. comedy, dance, magic, a heartfelt poem about turning 30, a kazoo solo. low pressure. high stakes. maximum glory.
+        <p className="text-sm md:text-base leading-relaxed" style={{ color: '#000000' }}>
+          show us your dumb thing. let&apos;s rock today! 2–3 minutes. anything goes. comedy, dance, magic, a heartfelt poem about turning 30, a kazoo solo. low pressure. high stakes. maximum glory.
         </p>
       </div>
 
