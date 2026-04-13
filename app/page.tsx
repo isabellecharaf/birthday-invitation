@@ -85,26 +85,6 @@ export default function Home() {
           <div className="w-full max-w-[600px] mt-8">
             <DressCode />
           </div>
-
-          {/* Bottom Images - Monkey and Drink */}
-          <div className="w-full max-w-[800px] mt-12 flex flex-col md:flex-row gap-6 justify-center items-center">
-            <Image
-              src="/monkey.png"
-              alt="Monkey"
-              width={400}
-              height={400}
-              className="object-contain w-full md:w-1/2 h-auto"
-              style={{ imageRendering: 'pixelated' }}
-            />
-            <Image
-              src="/drink.png"
-              alt="Drink"
-              width={400}
-              height={400}
-              className="object-contain w-full md:w-1/2 h-auto"
-              style={{ imageRendering: 'pixelated' }}
-            />
-          </div>
         </div>
 
         {/* Desktop-style Grid Layout */}
@@ -126,6 +106,28 @@ export default function Home() {
             <div className="max-w-2xl mx-auto">
               <RSVPForm />
             </div>
+          </div>
+        </div>
+
+        {/* Bottom Images - Monkey and Drink */}
+        <div className="max-w-7xl mx-auto mt-16 mb-12">
+          <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
+            <Image
+              src="/monkey.png"
+              alt="Monkey"
+              width={400}
+              height={400}
+              className="object-contain w-full md:w-1/2 max-w-[400px] h-auto"
+              style={{ imageRendering: 'pixelated' }}
+            />
+            <Image
+              src="/drink.png"
+              alt="Drink"
+              width={400}
+              height={400}
+              className="object-contain w-full md:w-1/2 max-w-[400px] h-auto"
+              style={{ imageRendering: 'pixelated' }}
+            />
           </div>
         </div>
       </div>
