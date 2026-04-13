@@ -10,7 +10,7 @@ export default function ImageMarquee() {
   ]
 
   return (
-    <div className="w-full overflow-hidden mb-8">
+    <div className="w-full overflow-hidden mb-8 hidden md:block">
       <style jsx>{`
         @keyframes scroll {
           0% {
