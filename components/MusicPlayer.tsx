@@ -21,10 +21,10 @@ export default function MusicPlayer() {
   const audioRef = useRef<HTMLAudioElement>(null)
 
   // Check if desktop on mount and open player on desktop
-  useEffect(() => {
-    const isDesktop = window.innerWidth >= 768 // md breakpoint
-    setIsOpen(isDesktop)
-  }, [])
+  // useEffect(() => {
+  //   const isDesktop = window.innerWidth >= 768 // md breakpoint
+  //   setIsOpen(isDesktop)
+  // }, [])
 
   // Fetch music files from the API
   useEffect(() => {
