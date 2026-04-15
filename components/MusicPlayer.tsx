@@ -26,12 +26,23 @@ export default function MusicPlayer() {
   //   setIsOpen(isDesktop)
   // }, [])
 
+  // Shuffle array function
+  const shuffleArray = (array: Artist[]) => {
+    const shuffled = [...array]
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+    }
+    return shuffled
+  }
+
   // Fetch music files from the API
   useEffect(() => {
     fetch('/api/music')
       .then(res => res.json())
       .then(data => {
-        setArtists(data.files || [])
+        const shuffledArtists = shuffleArray(data.files || [])
+        setArtists(shuffledArtists)
         setIsLoading(false)
       })
       .catch(err => {
@@ -126,22 +137,29 @@ export default function MusicPlayer() {
     audio.currentTime = percentage * audio.duration
   }
 
+  const currentSong = artists[currentTrack]
+
   if (!isOpen) {
     return (
-      <button
-        onClick={() => setIsOpen(true)}
-        className="px-4 py-2 text-sm font-bold shadow-lg hover:opacity-90"
-        style={{
-          background: '#d4d4d4',
-          border: '1px solid #000000',
-          borderRadius: '8px',
-          color: '#000000',
-          boxShadow: 'inset -3px -3px 0px rgba(0,0,0,0.4), inset 3px 3px 0px rgba(255,255,255,0.7)',
-          imageRendering: 'pixelated' as const,
-        }}
-      >
-        🎵 Music
-      </button>
+      <>
+        {/* Audio element - always rendered so music keeps playing */}
+        <audio ref={audioRef} src={currentSong?.song} key={currentSong?.song} />
+
+        <button
+          onClick={() => setIsOpen(true)}
+          className="px-4 py-2 text-sm font-bold shadow-lg hover:opacity-90"
+          style={{
+            background: '#d4d4d4',
+            border: '1px solid #000000',
+            borderRadius: '8px',
+            color: '#000000',
+            boxShadow: 'inset -3px -3px 0px rgba(0,0,0,0.4), inset 3px 3px 0px rgba(255,255,255,0.7)',
+            imageRendering: 'pixelated' as const,
+          }}
+        >
+          🎵 Music {isPlaying ? '▶' : ''}
+        </button>
+      </>
     )
   }
 
@@ -164,8 +182,6 @@ export default function MusicPlayer() {
       </div>
     )
   }
-
-  const currentSong = artists[currentTrack]
 
   return (
     <div className="w-80 bg-gradient-to-b from-gray-200 to-gray-300 border-2 border-gray-400 shadow-2xl font-sans">
