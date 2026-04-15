@@ -139,12 +139,12 @@ export default function MusicPlayer() {
 
   const currentSong = artists[currentTrack]
 
-  if (!isOpen) {
-    return (
-      <>
-        {/* Audio element - always rendered so music keeps playing */}
-        <audio ref={audioRef} src={currentSong?.song} key={currentSong?.song} />
+  return (
+    <>
+      {/* Audio element - always rendered at top level so music keeps playing */}
+      <audio ref={audioRef} src={currentSong?.song} key={currentSong?.song} />
 
+      {!isOpen ? (
         <button
           onClick={() => setIsOpen(true)}
           className="px-4 py-2 text-sm font-bold shadow-lg hover:opacity-90"
@@ -159,34 +159,23 @@ export default function MusicPlayer() {
         >
           🎵 Music {isPlaying ? '▶' : ''}
         </button>
-      </>
-    )
-  }
-
-  // Show loading or empty state
-  if (isLoading || artists.length === 0) {
-    return (
-      <div className="w-80 bg-gradient-to-b from-gray-200 to-gray-300 border-2 border-gray-400 shadow-2xl font-sans">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-2 py-1 flex justify-between items-center border-b border-gray-400">
-          <div className="text-white text-xs font-bold">Music Player</div>
-          <button
-            onClick={() => setIsOpen(false)}
-            className="text-white font-bold hover:bg-red-500 px-2"
-          >
-            ✕
-          </button>
+      ) : isLoading || artists.length === 0 ? (
+        <div className="w-80 bg-gradient-to-b from-gray-200 to-gray-300 border-2 border-gray-400 shadow-2xl font-sans">
+          <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-2 py-1 flex justify-between items-center border-b border-gray-400">
+            <div className="text-white text-xs font-bold">Music Player</div>
+            <button
+              onClick={() => setIsOpen(false)}
+              className="text-white font-bold hover:bg-red-500 px-2"
+            >
+              ✕
+            </button>
+          </div>
+          <div className="p-8 text-center text-gray-600 text-sm">
+            {isLoading ? 'Loading music...' : 'No music files found. Add MP3s to public/music/'}
+          </div>
         </div>
-        <div className="p-8 text-center text-gray-600 text-sm">
-          {isLoading ? 'Loading music...' : 'No music files found. Add MP3s to public/music/'}
-        </div>
-      </div>
-    )
-  }
-
-  return (
-    <div className="w-80 bg-gradient-to-b from-gray-200 to-gray-300 border-2 border-gray-400 shadow-2xl font-sans">
-      {/* Audio element */}
-      <audio ref={audioRef} src={currentSong?.song} key={currentSong?.song} />
+      ) : (
+        <div className="w-80 bg-gradient-to-b from-gray-200 to-gray-300 border-2 border-gray-400 shadow-2xl font-sans">
 
       {/* Title bar */}
       <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-2 py-1 flex justify-between items-center border-b border-gray-400">
@@ -314,6 +303,8 @@ export default function MusicPlayer() {
           </button>
         </div>
       </div>
-    </div>
+        </div>
+      )}
+    </>
   )
 }
