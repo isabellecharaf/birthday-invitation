@@ -76,6 +76,11 @@ export default function Home() {
             />
           </a>
 
+          {/* No Gifts Message */}
+          <p className="text-center text-lg md:text-xl mt-6" style={{ color: '#000000' }}>
+            no gifts, please! ur fun loving spirit is the gift &lt;3
+          </p>
+
           {/* Itinerary under Save The Date */}
           <div className="w-full max-w-[600px] mt-8">
             <Itinerary />
